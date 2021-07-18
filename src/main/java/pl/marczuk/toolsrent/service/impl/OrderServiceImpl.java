@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
 //        ---VERSION PREPARED FOR HOURS---
 //        long hours = ChronoUnit.HOURS.between(order.getStartDate(), order.getEndDate()); // ex. when 30 minutes, then will be 0 hours
 //        long hours = (long) Math.ceil(ChronoUnit.MINUTES.between(order.getStartDate(), order.getEndDate())/60D); // version with 30 min - 1 hour, 60 min - 1 hour and 61 min -
-        
+
         long minutes = ChronoUnit.MINUTES.between(order.getStartDate(), order.getEndDate());
         Item item = order.getItem();
         BigDecimal totalCost = item.getPriceList().getPrice().multiply(BigDecimal.valueOf(minutes));

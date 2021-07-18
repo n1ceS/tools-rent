@@ -8,6 +8,6 @@ import javax.persistence.NamedQuery;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    @Query(value="SELECT * FROM Orders  ord WHERE ord.user_username=:username AND ord.start_date LIKE :date ", nativeQuery = true)
+    @Query(value="SELECT distinct o FROM Order o join fetch o.orderCost WHERE o.user.username=:username AND function('date_format', o.startDate, '%Y-%m-%d') LIKE :date ")
     List<Order> findAllByUsernameAndMonth(String username, String date);
 }
